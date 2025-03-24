@@ -457,6 +457,8 @@ require('lazy').setup({
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
+    -- RCM specific to neovim lua. May limit general lua development
+    --     has options for disabling in certain projects
     'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
