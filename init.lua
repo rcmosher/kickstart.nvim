@@ -475,7 +475,15 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'williamboman/mason.nvim', opts = {} },
+      {
+        'williamboman/mason.nvim',
+        opts = {
+          registries = {
+            'github:mason-org/mason-registry', -- default registry
+            'github:Crashdummyy/mason-registry', -- registry for roslyn.nvim
+          },
+        },
+      },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -712,7 +720,7 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'angularls',
         'ast_grep', -- read up on this. Added for csharp RCM
-        'csharp_ls', -- read up on this. Is it installed correctly? Do I want the vscode toolkit based one? RCM
+        -- 'csharp_ls', -- read up on this. Is it installed correctly? Do I want the vscode toolkit based one? RCM
         'harper_ls', -- read up on this. Added for csharp RCM
         -- TODO read up on what LSPs I need. There's a lot listed for a single language. Do they cover different things or overlap?
       })
@@ -733,6 +741,19 @@ require('lazy').setup({
         },
       }
     end,
+  },
+
+  { -- Roslyn for C# - RCM
+    'seblyng/roslyn.nvim',
+    ft = 'cs',
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      -- your configuration comes here; leave empty for default settings
+    },
+    -- Notes: Make sure can run `dotnet restore --interactive` successfully from shell
+    -- Need to be authenticated for any private repos.
+    -- May require installing a Credential provider to work
   },
 
   { -- Autoformat
