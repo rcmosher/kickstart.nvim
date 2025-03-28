@@ -688,6 +688,12 @@ require('lazy').setup({
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+          -- TODO why are we using map instead of vim.keymap here?
+          map('<leader>cn', vim.diagnostic.goto_next, '[C]ode [N]ext Issue', { 'n', 'x' })
+          map('<leader>cp', vim.diagnostic.goto_prev, '[C]ode [P]ext Issue', { 'n', 'x' })
+          map('<c-\\>', vim.lsp.buf.signature_help, 'Signature', { 'n', 'x', 'i', 'o', 's' })
+          map('<leader>.', vim.lsp.buf.hover, '[.]Hover', { 'n', 'x' })
+
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
