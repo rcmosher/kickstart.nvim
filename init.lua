@@ -338,6 +338,16 @@ require('lazy').setup({
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        -- Tabs TODO conflicts with toggle, but the one toggle doesn't work
+        { '<leader>tn', '<cmd>tabnew<cr>', desc = '[T]ab [N]w]' },
+        { '<leader>tf', '<cmd>tabfirst<cr>', desc = '[T]ab [F]irst' },
+        { '<leader>tl', '<cmd>tablast<cr>', desc = '[T]ab [L]ast' },
+        { '<leader>tc', '<cmd>tabclose<cr>', desc = '[T]ab [C]lose' },
+        { '<leader>tm', group = '[T]ab [M]ove' },
+        { '<leader>tm0', '<cmd>tabmove 0<cr>', desc = '[T]ab [M]ove [0]' },
+        { '<leader>tmn', '<cmd>tabmove +1<cr>', desc = '[T]ab [M]ove [N]ext' },
+        { '<leader>tmp', '<cmd>tabmove -1<cr>', desc = '[T]ab [M]ove [P]rev' },
+
         -- DAP section RCM
         {
           '<leader>d',
