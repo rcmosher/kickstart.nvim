@@ -841,10 +841,16 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'angularls',
         'ast_grep', -- read up on this. Added for csharp RCM
-        -- 'csharp_ls', -- read up on this. Is it installed correctly? Do I want the vscode toolkit based one? RCM
-        'harper_ls', -- read up on this. Added for csharp RCM
+        'harper_ls', -- Read up on this. Added for csharp RCM
         -- TODO read up on what LSPs I need. There's a lot listed for a single language. Do they cover different things or overlap?
         'pyright', -- For tiltfile
+        -- RCM a few more I configured previous. Let's see how they work
+        'lua_ls',
+        'ts_ls',
+        'vimls',
+        'bashls',
+        'eslint',
+        'prettierd',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
