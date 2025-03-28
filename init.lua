@@ -527,6 +527,10 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+
+      -- TODO something like FZFs search. Can't quite get it working, and it doesn't order exact matches earlier when it does.
+      -- https://github.com/nvim-telescope/telescope.nvim/issues/564
+      vim.keymap.set('n', '<leader>sl', builtin.live_grep, { desc = '[S]earch [L]ive Grep' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' }) -- Kep this one around? RCM
