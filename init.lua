@@ -533,7 +533,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sl', builtin.live_grep, { desc = '[S]earch [L]ive Grep' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' }) -- Kep this one around? RCM
+      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' }) -- Keep this one around? RCM
       vim.keymap.set('n', '<leader>p', builtin.find_files, { desc = 'o[P]en file' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
@@ -818,6 +818,15 @@ require('lazy').setup({
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          },
+        },
+        harper_ls = {
+          settings = {
+            ['harper-ls'] = {
+              linters = {
+                ToDoHyphen = false,
+              },
             },
           },
         },
