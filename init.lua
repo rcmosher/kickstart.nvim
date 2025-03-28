@@ -290,7 +290,7 @@ require('lazy').setup({
     opts = {
       -- Delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.opt.timeoutlen
-      delay = 200,
+      delay = 400,
       icons = {
         -- Set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
