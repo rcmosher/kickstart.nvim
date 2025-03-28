@@ -1116,7 +1116,23 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'c_sharp',
+        'css',
+        'diff',
+        'html',
+        'javascript',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'typescript',
+        'vim',
+        'vimdoc',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -1134,6 +1150,80 @@ require('lazy').setup({
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    config = function()
+      local configs = require 'nvim-treesitter.configs'
+      configs.setup {
+        textobjects = {
+          select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            -- TODO test and check other objects (moving parameters)
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              -- You can optionally set descriptions to the mappings (used in the desc parameter of
+              -- nvim_buf_set_keymap) which plugins like which-key display
+              ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
+              -- TODO understand this better (as conflicts with sentence, but I don't use that)
+              -- You can also use captures from other query groups like `locals.scm`
+              -- ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+            },
+          },
+          -- TODO I don't like these maps
+          -- TODO documentation claim functions should work, but it's not
+          -- TODO doesn't work with a count
+          swap = {
+            enable = true,
+            swap_next = {
+              ['<Leader>sa'] = '@parameter.inner',
+              ['<Leader>sf'] = '@function.inner',
+            },
+            swap_previous = {
+              ['<Leader>Sa'] = '@parameter.inner',
+              ['<Leader>Sf'] = '@function.inner',
+            },
+          },
+
+          -- TODO not sure I like these shortcuts. [] would be nice if I had placed better
+          move = {
+            enable = true,
+            set_jumps = true, -- Add to jumplist
+            goto_next_start = {
+              ['<Leader>jf'] = '@function.outer',
+              ['<Leader>jc'] = '@class.outer',
+              ['<Leader>ja'] = '@parameter.outer',
+            },
+            goto_next_end = {
+              ['<Leader>jF'] = '@function.outer',
+              ['<Leader>jC'] = '@class.outer',
+              ['<Leader>jA'] = '@parameter.outer',
+            },
+            goto_previous_start = {
+              ['<Leader>Jf'] = '@function.outer',
+              ['<Leader>Jc'] = '@class.outer',
+              ['<Leader>Ja'] = '@parameter.outer',
+            },
+            goto_previous_end = {
+              ['<Leader>JF'] = '@function.outer',
+              ['<Leader>JC'] = '@class.outer',
+              ['<Leader>JA'] = '@parameter.outer',
+            },
+          },
+
+          -- TODO explore making these repeatable
+        },
+      }
+    end,
   },
   {
     'mfussenegger/nvim-dap',
