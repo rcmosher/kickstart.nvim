@@ -401,6 +401,15 @@ require('lazy').setup({
           remap = false,
         },
         {
+          '<leader>dc',
+          function()
+            require('dap').run_to_cursor()
+          end,
+          desc = 'Run to Cursor',
+          nowait = true,
+          remap = false,
+        },
+        {
           '<leader>dr',
           function()
             require('dap').repl.open()
@@ -1291,7 +1300,7 @@ require('lazy').setup({
 
       ui.setup()
 
-      vim.fn.sign_define('DapBreakpoint', { text = '🐞' })
+      vim.fn.sign_define('DapBreakpoint', { text = '🛑' })
 
       dap.listeners.before.attach.dapui_config = function()
         ui.open()
