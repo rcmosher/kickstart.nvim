@@ -1368,7 +1368,7 @@ require('lazy').setup({
               -- You can use the capture groups defined in textobjects.scm
               ['aa'] = '@parameter.outer',
               ['ia'] = '@parameter.inner',
-              ['af'] = '@function.outer',
+              ['af'] = '@function.outer', -- TODO Or m for method?
               ['if'] = '@function.inner',
               ['ac'] = '@class.outer',
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
