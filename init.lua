@@ -1459,20 +1459,45 @@ require('lazy').setup({
         command = '/home/rmosher/bin/netcoredbg',
         args = { '--interpreter=vscode' },
       }
+      -- RCM duplicating as netcoredbg as neotest complained about it not being there
+      dap.adapters.netcoredbg = {
+        type = 'executable',
+        command = '/home/rmosher/bin/netcoredbg',
+        args = { '--interpreter=vscode' },
+      }
       dap.configurations = {
         cs = { -- untested
           {
             type = 'coreclr',
-            name = 'launch - netcoredbg',
+            name = 'launch - coreclr',
             request = 'launch',
+            justMyCode = 'false',
             program = function()
               return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file') -- Are these placeholders? RCM
             end,
           },
           {
             type = 'coreclr',
+            name = 'attach - coreclr',
+            request = 'attach',
+            ['just-my-code'] = '0',
+            processId = require('dap.utils').pick_process,
+          },
+          -- RCM duplicating as netcoredbg as neotest complained about it not being there
+          {
+            type = 'netcoredbg',
+            name = 'launch - netcoredbg',
+            request = 'launch',
+            justMyCode = 'false',
+            program = function()
+              return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file') -- Are these placeholders? RCM
+            end,
+          },
+          {
+            type = 'netcoredbg',
             name = 'attach - netcoredbg',
             request = 'attach',
+            justMyCode = 'false',
             processId = require('dap.utils').pick_process,
           },
         },
