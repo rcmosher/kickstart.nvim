@@ -509,7 +509,7 @@ require('lazy').setup({
         },
         -- TODO diagnostic, output, attach, run entire project, run entire solution
 
-        -- DAP section RCM
+        -- DAP section RCM -- TODO should go in Dap so we know it is loaded
         {
           '<leader>d',
           group = 'Debugger',
@@ -562,7 +562,7 @@ require('lazy').setup({
           remap = false,
         },
         {
-          '<leader>dc',
+          '<leader>dh',
           function()
             require('dap').run_to_cursor()
           end,
@@ -600,11 +600,20 @@ require('lazy').setup({
           remap = false,
         },
         {
-          '<leader>db',
+          '<leader>dbl',
           function()
             require('dap').list_breakpoints()
           end,
-          desc = 'List Breakpoints',
+          desc = '[D]ebug [B]reakpoints [L]ist',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>dbx',
+          function()
+            require('dap').clear_breakpoints()
+          end,
+          desc = '[D]ebug [B]reakpoints [X]clear',
           nowait = true,
           remap = false,
         },
