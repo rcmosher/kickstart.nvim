@@ -1042,6 +1042,10 @@ require('lazy').setup({
         'bashls',
         'eslint',
         'prettierd',
+        'powershell-editor-services',
+        'kube-linter',
+        'helm-ls',
+        'yaml-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
