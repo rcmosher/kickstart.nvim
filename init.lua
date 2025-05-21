@@ -1,4 +1,20 @@
 --[[
+-- TODO
+--  Redraw (replace Ctrl-L. Does it actuall redraw
+--  Unit Test keymaps for project, all unit tests (name matching), etc
+--  Don't save registers across sessions. Pasted from a completely different session.
+--  keymaps for conditional breakpoints and log points?
+--   Can I get a pop-up to ask for condition or message? toggle_breakpoint({condition}, {hit_condition}, {log_message})
+--  List all issues in quickfix list. Maybe build with output to quickfix. https://gist.github.com/bartoszluka/18e9076192531c6268969ebd8bc33a81
+--  Look into codelens
+--  Scroll through available signatures - Issafalcon/lsp-overloads.nvim
+--  netcoredbg disable just-my-code https://github.com/Samsung/netcoredbg/blob/83214c3993c052a0ccb8854b913e028c5e365bc6/docs/cli.md?plain=1#L79
+--    Was able to get launch.json working and netcoredbg to attach to a process. But Just my code isn't making a differnce
+--    Next steps: Find example where JMC works. Find way to get PDBs locally with cli.
+--  Completion in csharp comments not working (summary, params, etc). I added snippets and it also doesn't use those.
+--  Git hunk navigation and staging -- I'm pretty sure I have the configuration correct
+--  Organize keymaps into one place
+--  Figure out snippets in comments for csharp. I don't see any updates since I last tried.
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
