@@ -446,6 +446,68 @@ require('lazy').setup({
         { '<leader>bp', '<cmd>bprevious<cr>', desc = '[B]uffer [P]rev' },
         -- Utilities
         { '<leader>uf', '<cmd>Explore<cr>', desc = '[U]tility [F]ile Browser' },
+        -- TODO neotest keymaps
+        {
+          '<leader>u',
+          group = 'Testing',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>ut',
+          function()
+            require('neotest').run.run()
+          end,
+          desc = 'Run Nearest Test',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>udt',
+          function()
+            require('neotest').run.run { strategy = 'dap' }
+          end,
+          desc = 'Debug Nearest Test',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>uat',
+          function()
+            require('neotest').run.attach()
+          end,
+          desc = 'Attach Nearest Test',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>uf',
+          function()
+            require('neotest').run.run(vim.fn.expand '%')
+          end,
+          desc = 'Run Tests in File',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>us',
+          function()
+            require('neotest').summary.toggle()
+          end,
+          desc = 'Toggle Test Summary pane',
+          nowait = true,
+          remap = false,
+        },
+        {
+          '<leader>uo',
+          function()
+            require('neotest').output_panel.toggle()
+          end,
+          desc = 'Toggle Output panel',
+          nowait = true,
+          remap = false,
+        },
+        -- TODO diagnostic, output, attach, run entire project, run entire solution
 
         -- DAP section RCM
         {
