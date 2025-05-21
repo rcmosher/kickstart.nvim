@@ -1255,6 +1255,7 @@ require('lazy').setup({
         },
         on_colors = function(colors)
           colors.comment = '#969FC9' -- 565F89
+          colors.fg_gutter = '#757FA9' -- Try to change line number color
         end,
       }
 
