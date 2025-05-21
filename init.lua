@@ -369,6 +369,7 @@ require('lazy').setup({
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
   { -- Useful plugin to show you pending keybinds.
+    -- TODO think about organization. Somekeymaps should load if the plugin loads. But easier to define everything in one place
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -415,14 +416,16 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
+        { '<leader>d', group = '[D]ebugger' },
+        { '<leader>r', group = '[R]efactor' },
         { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w', group = '[W]indow' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>b', group = '[B]uffer' },
+        { '<leader>u', group = '[U]tility' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         -- Tabs TODO conflicts with toggle, but the one toggle doesn't work
-        { '<leader>tn', '<cmd>tabnew<cr>', desc = '[T]ab [N]w]' },
+        { '<leader>tn', '<cmd>tabnew<cr>', desc = '[T]ab [N]ew' },
         { '<leader>tf', '<cmd>tabfirst<cr>', desc = '[T]ab [F]irst' },
         { '<leader>tl', '<cmd>tablast<cr>', desc = '[T]ab [L]ast' },
         { '<leader>tc', '<cmd>tabclose<cr>', desc = '[T]ab [C]lose' },
@@ -430,6 +433,19 @@ require('lazy').setup({
         { '<leader>tm0', '<cmd>tabmove 0<cr>', desc = '[T]ab [M]ove [0]' },
         { '<leader>tmn', '<cmd>tabmove +1<cr>', desc = '[T]ab [M]ove [N]ext' },
         { '<leader>tmp', '<cmd>tabmove -1<cr>', desc = '[T]ab [M]ove [P]rev' },
+        -- Window commands TODO conflicts with workspace
+        { '<leader>wv', '<cmd>vsplit<cr>', desc = '[W]indow [V]ertical split' },
+        { '<leader>ws', '<cmd>split<cr>', desc = '[W]indow [S]plit' },
+        { '<leader>wc', '<cmd>close<cr>', desc = '[W]indow [C]lose' },
+        { '<leader>wH', '<C-W>H', desc = '[W]indow [H] Move to Left' },
+        { '<leader>wH', '<C-W>J', desc = '[W]indow [J] Move to Bottom' },
+        { '<leader>wH', '<C-W>K', desc = '[W]indow [K] Move to Top' },
+        { '<leader>wH', '<C-W>L', desc = '[W]indow [L] Move to Right' },
+        -- Buffers
+        { '<leader>bn', '<cmd>bnext<cr>', desc = '[B]uffer [N]ext' },
+        { '<leader>bp', '<cmd>bprevious<cr>', desc = '[B]uffer [P]rev' },
+        -- Utilities
+        { '<leader>uf', '<cmd>Explore<cr>', desc = '[U]tility [F]ile Browser' },
 
         -- DAP section RCM
         {
