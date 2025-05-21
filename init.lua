@@ -295,6 +295,63 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+    config = function()
+      require('gitsigns').setup {
+        on_attach = function(bufnr)
+          local gitsigns = require 'gitsigns'
+          -- useful to set current buffer
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          map('n', '<leader>gn', function()
+            gitsigns.nav_hunk 'next'
+          end, { desc = '[G]it [N]ext hunk' })
+          map('n', '<leader>gp', function()
+            gitsigns.nav_hunk 'prev'
+          end, { desc = '[G]it [P]rev hunk' })
+          map('n', '<leader>gs', gitsigns.stage_hunk, { desc = '[G]it [S]tage hunk' })
+          map('n', '<leader>gr', gitsigns.reset_hunk, { desc = '[G]it [R]eset hunk' })
+
+          map('v', '<leader>gs', function()
+            gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          end, { desc = '[G]it [S]tage hunk' })
+
+          map('v', '<leader>gr', function()
+            gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          end, { desc = '[G]it [R]eset hunk' })
+
+          map('n', '<leader>gS', gitsigns.stage_buffer, { desc = '[G]it [S]tage buffer' })
+          map('n', '<leader>gR', gitsigns.reset_buffer, { desc = '[G]it [R]eset buffer' })
+          map('n', '<leader>g.', gitsigns.preview_hunk, { desc = '[G]it [.]Preview hunk' })
+          map('n', '<leader>gi', gitsigns.preview_hunk_inline, { desc = '[G]it [I]nline preview' })
+
+          map('n', '<leader>gb', function()
+            gitsigns.blame_line { full = true }
+          end, { desc = '[G]it [B]lame line' })
+
+          map('n', '<leader>gd', gitsigns.diffthis, { desc = '[G]it [D]iff' })
+
+          map('n', '<leader>gD', function()
+            gitsigns.diffthis '~'
+          end, { desc = '[G]it [D]iff' })
+
+          map('n', '<leader>gQ', function()
+            gitsigns.setqflist 'all'
+          end, { desc = '[G]it [Q]uickfix all' })
+          map('n', '<leader>gq', gitsigns.setqflist, { desc = '[G]it [Q]uickfix' })
+
+          -- Toggles
+          map('n', '<leader>gtb', gitsigns.toggle_current_line_blame, { desc = '[G]it [T]oggle [B]lame' })
+          map('n', '<leader>gtw', gitsigns.toggle_word_diff, { desc = '[G]it [T]oggle [W]ord diff' })
+
+          -- Text object
+          map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
+        end,
+      }
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
