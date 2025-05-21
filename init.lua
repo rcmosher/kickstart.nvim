@@ -1511,7 +1511,20 @@ require('lazy').setup({
       require('neotest').setup {
         adapters = {
           require 'neotest-dotnet',
-          -- TODO dap
+        },
+        icons = {
+          running_animated = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+        },
+        log_level = vim.log.levels.TRACE,
+        -- Attempting to prevent file locking issues suggesting multiple runs.
+        -- Seems like smarter strategy would be one build, concurrent runs after (assuming that is what is going on)
+        -- I think the problem is on neotest-dotnet's side as what is run depends on what the adapter returns.
+        -- It should be smart enough not to rebuild for each test (if possible) so we can have one build,
+        -- followed by concurrent tests.
+        running = {
+          -- Concurrent does help. All tests appear to run successfully. But I was able to run all test projects at once, and some groups said they failed while all their tests passed. Worth some review.
+          -- Hmmm. Had some test fail on a narrow run, so not sure what's going on there. Seemed to pass with multiple run, but hard to tell since there is little output on success.
+          concurrent = false,
         },
       }
     end,
